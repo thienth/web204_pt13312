@@ -26,6 +26,26 @@
 
 	$sliders = $stmt->fetchAll();
 
+	// 6 ban ghi co id lon nhat
+	$newProductsQuery = "select * 
+						from products 
+						order by id desc
+						limit 6";
+	$stmt = $conn->prepare($newProductsQuery);
+	$stmt->execute();
+
+	$newProducts = $stmt->fetchAll();
+
+	// 6 ban ghi co luong view lon nhat
+	$mostViewProductsQuery = "	select * 
+								from products
+								order by views desc
+								limit 6";
+	$stmt = $conn->prepare($mostViewProductsQuery);
+	$stmt->execute();
+
+	$mostViewProducts = $stmt->fetchAll();
+
 
  ?>
 
@@ -134,87 +154,25 @@
 			<div class="tittle-product">
 				<h2>Sản phẩm mới</h2>
 			</div>
+			<?php foreach ($newProducts as $product): ?>
+				
+				<div class="col-sm-4 col-xs-12">
+					<div class="img-height">
+						<img src="<?= $siteUrl . $product['image']?>" alt="">
+					</div>
+					<a class="title-name"><?= $product['product_name']?></a>
+					<div class="text-center">
+						Giá bán: <strike><b><?= $product['list_price']?> vnđ</b></strike>
+						<br>
+						Giá khuyến mại: <b><?= $product['sell_price']?> vnđ</b>
+					</div>
 
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product4.jpg" alt="">
+					<div class="footer-product">
+						<a href="#" class="details">Xem chi tiết</a>
+					</div>
 				</div>
-				<a class="title-name">Bánh nha</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product2.jpg" alt="">
-				</div>
-				<a class="title-name">Bánh nha</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product1.jpg" alt="">
-				</div>
-				<a class="title-name">Bánh nha</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
-
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product4.jpg" alt="">
-				</div>
-				<a class="title-name">Bánh nha</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product3.jpg" alt="">
-				</div>
-				<a class="title-name">Bánh nha</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product4.jpg" alt="">
-				</div>
-				<a class="title-name">Bánh nha</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
+			<?php endforeach ?>
+			
 
 		</div>
 	</div>
