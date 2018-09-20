@@ -179,87 +179,27 @@
 	<div id="hot-product">
 		<div class="container">
 			<div class="tittle-product">
-				<h2>Sản phẩm bán chạy</h2>
+				<h2>Sản phẩm xem nhiều</h2>
 			</div>
 
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product-hot1.jpg" alt="">
+			<?php foreach ($mostViewProducts as $product): ?>
+				
+				<div class="col-sm-4 col-xs-12">
+					<div class="img-height">
+						<img src="<?= $siteUrl . $product['image']?>" alt="">
+					</div>
+					<a class="title-name"><?= $product['product_name']?></a>
+					<div class="text-center">
+						Giá bán: <strike><b><?= $product['list_price']?> vnđ</b></strike>
+						<br>
+						Giá khuyến mại: <b><?= $product['sell_price']?> vnđ</b>
+					</div>
+
+					<div class="footer-product">
+						<a href="#" class="details">Xem chi tiết</a>
+					</div>
 				</div>
-				<a class="title-name">Kẹo dẻo</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product-hot2.jpg" alt="">
-				</div>
-				<a class="title-name">Kẹo dẻo</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product-hot3.jpg" alt="">
-				</div>
-				<a class="title-name">Kẹo dẻo</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product-hot4.jpg" alt="">
-				</div>
-				<a class="title-name">Kẹo dẻo</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product-hot5.jpg" alt="">
-				</div>
-				<a class="title-name">Kẹo dẻo</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<div class="img-height">
-					<img src="img/product-hot1.jpg" alt="">
-				</div>
-				<a class="title-name">Kẹo dẻo</a>
-				<div class="text-center">
-					<a class="promotional">100.000Đ</a>
-				</div>
-				<div class="footer-product">
-					<a href="#" class="details">Xem chi tiết</a>
-					<a href="#" class="buying">Mua hàng</a>
-				</div>
-			</div>
+			<?php endforeach ?>
 
 		</div>
 	</div>
