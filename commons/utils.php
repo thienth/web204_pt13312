@@ -8,4 +8,11 @@ $dbpwd = "123456";
 $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", 
 		$dbusername, $dbpwd);
 
+
+function dd($vari){
+	echo "<pre>";
+	var_dump($vari);
+	die;
+}
+
  ?>
