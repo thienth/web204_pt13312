@@ -1,6 +1,21 @@
 <?php 
 $path = "./";
 require_once $path.'../commons/utils.php';
+$countCateQuery = "select count(*) as total from categories";
+$stmt = $conn->prepare($countCateQuery);
+$stmt->execute();
+$totalCate = $stmt->fetch();
+
+$countProQuery = "select count(*) as total from products";
+$stmt = $conn->prepare($countProQuery);
+$stmt->execute();
+$totalPro = $stmt->fetch();
+
+$countCommentQuery = "select count(*) as total from comments";
+$stmt = $conn->prepare($countCommentQuery);
+$stmt->execute();
+$totalComment = $stmt->fetch();
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +48,72 @@ require_once $path.'../commons/utils.php';
 
     <!-- Main content -->
     <section class="content">
-      
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>
+                <?= $totalCate['total'] ?>
+              </h3>
+
+              <p>Danh mục</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a 
+              href="<?= $adminUrl?>danh-muc" 
+              class="small-box-footer">Quản lý danh mục <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+              <p>Bounce Rate</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>44</h3>
+
+              <p>User Registrations</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>65</h3>
+
+              <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
 
     </section>
     <!-- /.content -->
