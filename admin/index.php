@@ -89,14 +89,16 @@ $totalComment = $stmt->fetch();
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?= $totalComment['total']?></h3>
 
-              <p>User Registrations</p>
+              <p>Phản hồi</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa fa-mail-forward"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a 
+              href="<?= $adminUrl?>phan-hoi" 
+              class="small-box-footer">Danh sách phản hồi <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
