@@ -44,7 +44,16 @@ $cates = $stmt->fetchAll();
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Bordered Table</h3>
+              <form>
+                <div class="row">
+                  <div class="col-md-6">
+                    
+                    <div class="form-group">
+                      <input type="text" name="keyword" class="form-control">
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
