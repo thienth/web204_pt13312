@@ -1,5 +1,5 @@
 <?php 
-$path = "./";
+$path = "../";
 require_once $path.'../commons/utils.php';
  ?>
 <!DOCTYPE html>
