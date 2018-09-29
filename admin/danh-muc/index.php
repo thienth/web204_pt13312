@@ -1,6 +1,13 @@
 <?php 
 $path = "../";
 require_once $path.'../commons/utils.php';
+$catesQuery = "select 
+                c.*,
+                (select count(*) from products where cate_id = c.id) as total_product
+              from categories c";
+$stmt = $conn->prepare($catesQuery);
+$stmt->execute();
+$cates = $stmt->fetchAll();
  ?>
 <!DOCTYPE html>
 <html>
@@ -42,52 +49,47 @@ require_once $path.'../commons/utils.php';
             <!-- /.box-header -->
             <div class="box-body">
               <table class="table table-bordered">
-                <tbody><tr>
+                <tbody>
+                <tr>
                   <th style="width: 10px">#</th>
-                  <th>Task</th>
-                  <th>Progress</th>
-                  <th style="width: 40px">Label</th>
+                  <th>Tên</th>
+                  <th>Sản phẩm</th>
+                  <th style="width: 240px">Mô tả</th>
+                  <th style="width: 120px">
+                    <a 
+                      href="<?= $adminUrl ?>danh-muc/add.php" 
+                      class="btn btn-xs btn-success">
+                      <i class="fa fa-plus"></i>  Thêm
+                    </a>
+                  </th>
                 </tr>
-                <tr>
-                  <td>1.</td>
-                  <td>Update software</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-red">55%</span></td>
-                </tr>
-                <tr>
-                  <td>2.</td>
-                  <td>Clean database</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-yellow">70%</span></td>
-                </tr>
-                <tr>
-                  <td>3.</td>
-                  <td>Cron job running</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-light-blue">30%</span></td>
-                </tr>
-                <tr>
-                  <td>4.</td>
-                  <td>Fix and squish bugs</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-green">90%</span></td>
-                </tr>
+
+                <?php foreach ($cates as $item): ?>
+                  
+                  <tr>
+                    <td><?= $item['id']?>.</td>
+                    <td><?= $item['name']?></td>
+                    <td>
+                      <?= $item['total_product']?>
+                    </td>
+                    <td>
+                      <?= $item['desc']?>
+                    </td>
+                    <td>
+                      <a 
+                        href="<?= $adminUrl ?>danh-muc/edit.php?id=<?= $item['id']?>" 
+                        class="btn btn-xs btn-primary">
+                        <i class="fa fa-pencil"></i>  Sửa
+                      </a>
+                      <a 
+                        href="<?= $adminUrl ?>danh-muc/remove.php?id=<?= $item['id']?>" 
+                        class="btn btn-xs btn-danger">
+                        <i class="fa fa-trash"></i>  Xoá
+                      </a>
+                    </td>
+                  </tr>
+                <?php endforeach ?>
+              
               </tbody>
             </table>
             </div>
