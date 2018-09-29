@@ -60,7 +60,7 @@ $totalComment = $stmt->fetch();
               <p>Danh mục</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="fa fa-list"></i>
             </div>
             <a 
               href="<?= $adminUrl?>danh-muc" 
@@ -72,14 +72,16 @@ $totalComment = $stmt->fetch();
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3><?= $totalPro['total']?></h3>
 
-              <p>Bounce Rate</p>
+              <p>Sản phẩm</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="fa fa-cubes"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a 
+              href="<?= $adminUrl?>san-pham" 
+              class="small-box-footer">Quản lý sản phẩm <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
