@@ -16,6 +16,7 @@ $cates = $stmt->fetchAll();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 2 | Dashboard</title>
   <?php include_once $path.'_share/top_asset.php'; ?>
+  <link rel="stylesheet" href="<?= $adminAssetUrl?>plugins/Toastr/toastr.min.css"></style>  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -91,8 +92,9 @@ $cates = $stmt->fetchAll();
                         <i class="fa fa-pencil"></i>  Sửa
                       </a>
                       <a 
-                        href="<?= $adminUrl ?>danh-muc/remove.php?id=<?= $item['id']?>" 
-                        class="btn btn-xs btn-danger">
+                        href="javascript:;" 
+                        linkurl="<?= $adminUrl ?>danh-muc/remove.php?id=<?= $item['id']?>" 
+                        class="btn btn-xs btn-danger btn-remove">
                         <i class="fa fa-trash"></i>  Xoá
                       </a>
                     </td>
@@ -126,5 +128,42 @@ $cates = $stmt->fetchAll();
 <!-- ./wrapper -->
 
 <?php include_once $path.'_share/bottom_asset.php'; ?>
+
+<script type="text/javascript" src="<?= $adminAssetUrl?>plugins/Toastr/toastr.min.js""></script>
+
+
+<script type="text/javascript">
+  <?php if (isset($_GET['success']) && $_GET['success'] == true) {
+    ?>
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-bottom-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+    toastr.success('Thêm danh mục thành công!')
+    <?php
+  } ?>
+
+  $('.btn-remove').on('click', function(){
+    var url = $(this).attr('linkurl');
+    var conf = confirm('Bạn có chắc chắn muốn xoá danh mục này hay không?');
+
+    if(conf){
+      window.location.href = url;
+    }
+  });
+</script>
 </body>
 </html>
