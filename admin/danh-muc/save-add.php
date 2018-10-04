@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD'] != "POST"){
 }
 
 $name= trim($_POST['name']);
-$desc= $_POST['desc'];
+$description= $_POST['description'];
 
 if($name == ""){
 	header('location: '.$adminUrl . 'danh-muc/add.php?errName=Không để trống tên danh mục');
@@ -25,7 +25,10 @@ if($checkDuplicate != false){
 }
 
 
-$sql = "insert into categories values (null, '$name', '$desc')";
+$sql = "insert into categories 
+			(name, description) 
+		values 
+			('$name', '$description')";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 

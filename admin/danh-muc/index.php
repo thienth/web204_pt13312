@@ -83,7 +83,7 @@ $cates = $stmt->fetchAll();
                       <?= $item['total_product']?>
                     </td>
                     <td>
-                      <?= $item['desc']?>
+                      <?= $item['description']?>
                     </td>
                     <td>
                       <a 

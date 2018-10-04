@@ -44,7 +44,7 @@ require_once $path.'../commons/utils.php';
             </div>
             <div class="form-group">
               <label>Mô tả</label>
-              <textarea name="desc" class="form-control" rows="5"></textarea>
+              <textarea name="description" class="form-control" rows="5"></textarea>
             </div>
             <div class="text-right">
               <a href="<?= $adminUrl?>danh-muc" class="btn btn-danger btn-xs">Huỷ</a>
