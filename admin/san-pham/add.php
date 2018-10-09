@@ -1,6 +1,11 @@
 <?php 
 $path = "../";
 require_once $path.'../commons/utils.php';
+$sql = "select * from categories";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$cates = $stmt->fetchAll();
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -45,12 +50,11 @@ require_once $path.'../commons/utils.php';
             <div class="form-group">
               <label>Danh mục</label>
               <select class="form-control" name="cate_id">
-                <option>danh muc 1</option>
-                <option>danh muc 1</option>
-                <option>danh muc 1</option>
-                <option>danh muc 1</option>
-                <option>danh muc 1</option>
-                <option>danh muc 1</option>
+                <?php foreach ($cates as $item): ?>
+                  <option value="<?= $item['id'] ?>">
+                      <?= $item['name'] ?>
+                  </option>
+                <?php endforeach ?>
               </select>
             </div>
             <div class="form-group">
