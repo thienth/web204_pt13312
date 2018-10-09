@@ -24,16 +24,33 @@ $filename = 'img/san-pham/'.uniqid() . '.' . $ext;
 // luu file vao trong thu muc
 move_uploaded_file($file['tmp_name'], "../../".$filename);
 
-dd(1);
-
-$sql = "insert into categories 
-			(name, description) 
+$sql = "insert into products 
+			(product_name, 
+			cate_id,
+			list_price,
+			sell_price,
+			status,
+			detail,
+			image) 
 		values 
-			('$name', '$description')";
+			(:product_name, 
+			:cate_id,
+			:list_price,
+			:sell_price,
+			:status,
+			:detail,
+			:image) ";
 $stmt = $conn->prepare($sql);
+$stmt->bindParam(':product_name', $product_name);
+$stmt->bindParam(':cate_id', $cate_id);
+$stmt->bindParam(':list_price', $list_price);
+$stmt->bindParam(':sell_price', $sell_price);
+$stmt->bindParam(':status', $status);
+$stmt->bindParam(':detail', $detail);
+$stmt->bindParam(':image', $filename);
 $stmt->execute();
 
 
-header('location: '.$adminUrl . 'danh-muc?success=true');
+header('location: '.$adminUrl . 'san-pham');
 die;
  ?>
