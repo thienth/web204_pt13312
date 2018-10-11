@@ -1,6 +1,12 @@
 <?php 
+session_start();
 $path = "./";
 require_once $path.'../commons/utils.php';
+if(isset($_SESSION['login']) == false || $_SESSION['login'] == null){
+  header("location: ". $siteUrl . "login.php");
+  die;
+}
+
 $countCateQuery = "select count(*) as total from categories";
 $stmt = $conn->prepare($countCateQuery);
 $stmt->execute();
