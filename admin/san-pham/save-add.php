@@ -14,15 +14,18 @@ $sell_price= $_POST['sell_price'];
 $status= $_POST['status'];
 $detail= $_POST['detail'];
 $file = $_FILES['image'];
+if($file['size'] > 0){
+	// lay duoi file
+	$path = $file['name'];
+	$ext = pathinfo($path, PATHINFO_EXTENSION);
 
-// lay duoi file
-$path = $file['name'];
-$ext = pathinfo($path, PATHINFO_EXTENSION);
-
-// tao ra ten file moi
-$filename = 'img/san-pham/'.uniqid() . '.' . $ext;
-// luu file vao trong thu muc
-move_uploaded_file($file['tmp_name'], "../../".$filename);
+	// tao ra ten file moi
+	$filename = 'img/san-pham/'.uniqid() . '.' . $ext;
+	// luu file vao trong thu muc
+	move_uploaded_file($file['tmp_name'], "../../".$filename);
+}else{
+	$filename = 'img/default/default-picture.png';
+}
 
 $sql = "insert into products 
 			(product_name, 
