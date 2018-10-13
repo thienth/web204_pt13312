@@ -1,15 +1,28 @@
 <?php 
 $path = "../";
 require_once $path.'../commons/utils.php';
+$pageNumber = isset($_GET['page']) == true ? $_GET['page'] : 1;
+$pageSize = 5;
+
+$offset = ($pageNumber-1)*$pageSize;
 $sql = "select
           p.*,
           c.name as catename
         from products p
         join categories c
-          on p.cate_id = c.id";
+          on p.cate_id = c.id
+        order by id asc
+        limit $offset, $pageSize";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $products = $stmt->fetchAll();
+
+$sql = "select count(*) as total from products";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$totalProduct = $stmt->fetch();
+
+$totalPage = ceil($totalProduct['total']/$pageSize);
 
  ?>
 <!DOCTYPE html>
@@ -121,13 +134,7 @@ $products = $stmt->fetchAll();
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">«</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">»</a></li>
-              </ul>
+              <ul id="pagination" class="pagination-sm"></ul>
             </div>
           </div>
         </div>  
@@ -179,6 +186,19 @@ $products = $stmt->fetchAll();
       window.location.href = url;
     }
   });
+
+  $('#pagination').twbsPagination({
+      totalPages: <?= $totalPage?>,
+      visiblePages: 3,
+      initiateStartPageClick: false,
+      startPage: <?= $pageNumber?>,
+      onPageClick: function (event, page) {
+        var url = '<?= $adminUrl?>san-pham';
+        url += "?page=" + page;
+        window.location.href = url;
+      }
+  });
+
 </script>
 </body>
 </html>
