@@ -153,13 +153,13 @@ $users = $stmt->fetchAll();
       "showMethod": "fadeIn",
       "hideMethod": "fadeOut"
     }
-    toastr.success('Thêm danh mục thành công!')
+    toastr.success('Thêm tài khoản thành công!')
     <?php
   } ?>
 
   $('.btn-remove').on('click', function(){
     var url = $(this).attr('linkurl');
-    var conf = confirm('Bạn có chắc chắn muốn xoá danh mục này hay không?');
+    var conf = confirm('Bạn có chắc chắn muốn xoá tài khoản này hay không?');
 
     if(conf){
       window.location.href = url;
